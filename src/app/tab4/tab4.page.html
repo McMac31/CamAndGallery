@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Estacion Meteorologica</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-searchbar
+    placeholder="Introduce el nombre de la ciudad"
+    (ionInput)="onSearch($event)">
+  </ion-searchbar>
+  <ion-card *ngIf="ciudad.nombre">
+    <ion-card-header>
+      <ion-card-title>{{ ciudad.nombre }}</ion-card-title>
+      <ion-card-subtitle>{{ ciudad.nombreCompleto }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Latitud: {{ ciudad.ubicacion.lat }}, Longitud: {{ ciudad.ubicacion.lon }}</p>
+      <p>Temperatura: {{ ciudad.clima.temperatura }} °C</p>
+      <p>Temperatura Mínima: {{ ciudad.clima.minTemp }} °C</p>
+      <p>Temperatura Máxima: {{ ciudad.clima.maxTemp }} °C</p>
+      <p>Humedad: {{ ciudad.clima.humedad }}%</p>
+      <p>Descripción: {{ ciudad.clima.descripcion }}</p>
+      <p>Velocidad del Viento: {{ ciudad.clima.velocidadViento }} km/h</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

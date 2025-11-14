@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "https://wttr.in",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": { "^/api": "" }
+  }
+}
