@@ -3,24 +3,109 @@
     <ion-title>Estacion Meteorologica</ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content [fullscreen]="true">
-  <ion-searchbar
-    placeholder="Introduce el nombre de la ciudad"
-    (ionInput)="onSearch($event)">
-  </ion-searchbar>
-  <ion-card *ngIf="ciudad.nombre">
+  
+  <ion-grid class="search-container">
+    <ion-row class="ion-align-items-center">
+      <ion-col>
+        <ion-searchbar
+          placeholder="Introduce el nombre de la ciudad"
+          [(ngModel)]="searchQuery"
+          (keyup.enter)="buscarClima()">
+        </ion-searchbar>
+      </ion-col>
+      <ion-col size="auto">
+        <ion-button (click)="buscarClima()" class="search-button">
+          <ion-icon name="search-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card *ngIf="ciudad.nombre" class="weather-widget">
     <ion-card-header>
       <ion-card-title>{{ ciudad.nombre }}</ion-card-title>
       <ion-card-subtitle>{{ ciudad.nombreCompleto }}</ion-card-subtitle>
     </ion-card-header>
+
     <ion-card-content>
-      <p>Latitud: {{ ciudad.ubicacion.lat }}, Longitud: {{ ciudad.ubicacion.lon }}</p>
-      <p>Temperatura: {{ ciudad.clima.temperatura }} °C</p>
-      <p>Temperatura Mínima: {{ ciudad.clima.minTemp }} °C</p>
-      <p>Temperatura Máxima: {{ ciudad.clima.maxTemp }} °C</p>
-      <p>Humedad: {{ ciudad.clima.humedad }}%</p>
-      <p>Descripción: {{ ciudad.clima.descripcion }}</p>
-      <p>Velocidad del Viento: {{ ciudad.clima.velocidadViento }} km/h</p>
+      <div class="temperature-display">
+        <ion-icon [name]="ciudad.clima.icon" class="weather-icon"></ion-icon>
+        <h1>{{ ciudad.clima.temperatura | number:'1.0-0' }}°C</h1>
+        <p>{{ ciudad.clima.descripcion }}</p>
+      </div>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-item lines="none">
+              <ion-icon name="thermometer-outline" slot="start" color="primary"></ion-icon>
+              <ion-label>
+                <p>Sens. Térmica</p>
+                <h3>{{ ciudad.clima.sensacionTermica | number:'1.0-0' }}°C</h3>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+          
+          <ion-col size="6">
+            <ion-item lines="none">
+              <ion-icon name="water-outline" slot="start" color="secondary"></ion-icon>
+              <ion-label>
+                <p>Humedad</p>
+                <h3>{{ ciudad.clima.humedad }}%</h3>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+            <ion-item lines="none">
+              <ion-icon name="umbrella-outline" slot="start" color="tertiary"></ion-icon>
+              <ion-label>
+                <p>Precipitación</p>
+                <h3>{{ ciudad.clima.precipitacion }} mm</h3>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        
+          <ion-col size="6">
+            <ion-item lines="none">
+              <ion-icon name="flag-outline" slot="start" color="medium"></ion-icon>
+              <ion-label>
+                <p>Viento</p>
+                <h3>{{ ciudad.clima.velocidadViento }} km/h</h3>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+            <ion-item lines="none">
+              <ion-icon name="sunny-outline" slot="start" color="warning"></ion-icon>
+              <ion-label>
+                <p>Índice UV</p>
+                <h3>{{ ciudad.clima.indiceUV }}</h3>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+
+          <ion-col size="6">
+            <ion-item lines="none">
+              <ion-icon name="location-outline" slot="start" color="danger"></ion-icon>
+              <ion-label>
+                <p>Coordenadas</p>
+                <h3 class="coordenadas">
+                  {{ ciudad.ubicacion.lat }}, {{ ciudad.ubicacion.lon }}
+                </h3>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
     </ion-card-content>
   </ion-card>
 </ion-content>

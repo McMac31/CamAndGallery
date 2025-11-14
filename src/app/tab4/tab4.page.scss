@@ -11,16 +11,28 @@ ion-title {
   color: var(--ion-color-primary, #1e72ff);
 }
 
-ion-searchbar {
-  margin: 1rem auto;
-  width: calc(100% - 2rem);
+.search-container {
+  padding: 8px 8px 0 8px;
   max-width: 640px;
-  --color:black;
-  --icon-color:black;
-  --background: #fff;
-  --border-radius: 14px;
-  --placeholder-color: black;
-  box-shadow: 0 6px 16px black;
+  margin: 0 auto;
+
+  ion-searchbar {
+    margin: 0;
+    width: 100%;
+    --color: black;
+    --icon-color: black;
+    --background: #fff;
+    --border-radius: 14px;
+    --placeholder-color: black;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .search-button {
+    --box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    margin-left: 8px;
+    height: 50px;
+    --border-radius: 14px;
+  }
 }
 
 ion-card {
@@ -30,7 +42,7 @@ ion-card {
   border-radius: 12px;
   overflow: hidden;
   background: var(--ion-card-background, #ffffff);
-  box-shadow: 0 10px 24px rgba(10,20,40,0.05);
+  box-shadow: 0 10px 24px rgba(10, 20, 40, 0.05);
 }
 
 
@@ -47,7 +59,7 @@ ion-card-title {
 
 ion-card-subtitle {
   font-size: 0.9rem;
-  color: var(--ion-color-medium,black);
+  color: var(--ion-color-medium, black);
 }
 
 
@@ -56,4 +68,60 @@ ion-card-content {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.weather-widget {
+  .temperature-display {
+    text-align: center;
+    margin-bottom: 16px;
+
+    .weather-icon {
+      font-size: 7rem;
+      color: var(--ion-color-primary);
+      margin-bottom: -10px;
+    }
+
+    h1 {
+      font-size: 4.0rem;
+      font-weight: 700;
+      margin: 0;
+      line-height: 1.1;
+    }
+
+    p {
+      font-size: 1.2rem;
+      text-transform: capitalize;
+      color: var(--ion-color-medium-shade);
+      margin: 4px 0 0 0;
+    }
+  }
+
+  ion-item {
+    --background: transparent;
+    --padding-start: 0;
+    --inner-padding-end: 0;
+
+    ion-icon {
+      font-size: 1.8rem;
+      margin-right: 12px;
+    }
+
+    ion-label {
+      p {
+        font-size: 0.9rem;
+        margin: 0;
+      }
+      h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 2px 0 0 0;
+      }
+      h3.coordenadas {
+        font-size: 0.95rem;  
+        font-weight: 600;
+        line-height: 1.2;
+        white-space: normal; 
+      }
+    }
+  }
 }

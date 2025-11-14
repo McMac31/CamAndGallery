@@ -16,7 +16,7 @@ export interface FotoApi{
 })
 export class LlamadaApi {
 
-  private baseURL = ' https://apiostalaritza.lhusurbil.eus';
+  private baseURL = '/api-fotos'; 
   
   constructor(private http: HttpClient) {}
 
@@ -32,7 +32,6 @@ export class LlamadaApi {
       })
     );
   }
-
 
   uploadPhoto(photoData: any): Observable<any> {
     return this.http.post(`${this.baseURL}/post`, photoData).pipe(
